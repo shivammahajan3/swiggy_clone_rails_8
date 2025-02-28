@@ -1,0 +1,8 @@
+<h1 class="text-3xl font-bold text-center my-6">Top Restaurants</h1>
+
+<% @restros.each do |restro| %>
+  <div class="bg-white shadow-lg rounded-lg p-4 my-4 mx-auto max-w-lg">
+    <p class="text-xl font-semibold text-gray-800"><%= restro.name %></p>
+    <%= link_to 'View Menus', products_path, class: 'mt-2 inline-block text-blue-500 hover:text-blue-700 font-medium' %>
+  </div>
+<% end %>
