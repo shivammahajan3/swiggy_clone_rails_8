@@ -1,0 +1,9 @@
+<% flash.each do |name, msg| %>
+  <% if msg.present? %>
+    <div class="max-w-xs mx-auto my-4 p-3 rounded-md shadow-sm text-center 
+      <%= name == 'notice' ? 'bg-green-100 text-green-800 border border-green-400' : 'bg-red-100 text-red-800 border border-red-400' %>">
+      <%= msg %>
+      <button type="button" class="text-xl absolute top-2 right-2 text-gray-600 hover:text-gray-800 focus:outline-none" data-bs-dismiss="alert" aria-label="Close">&times;</button>
+    </div>
+  <% end %>
+<% end %>
