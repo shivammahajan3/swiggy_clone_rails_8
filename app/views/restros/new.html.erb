@@ -1,0 +1,37 @@
+<h1 class="text-3xl font-bold text-center my-6">Add a New Restaurant</h1>
+
+<%= form_with(model: @restro, local: true) do |form| %>
+  <div class="max-w-lg mx-auto bg-white p-6 rounded-lg shadow-lg">
+    <div class="mb-4">
+      <%= form.label :name, class: "block text-gray-700 font-medium" %>
+      <%= form.text_field :name, class: "mt-1 block w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" %>
+    </div>
+
+    <div class="mb-4">
+      <%= form.label :address, class: "block text-gray-700 font-medium" %>
+      <%= form.text_field :address, class: "mt-1 block w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" %>
+    </div>
+
+    <div class="mb-4">
+      <%= form.label :phone_number, class: "block text-gray-700 font-medium" %>
+      <%= form.text_field :phone_number, class: "mt-1 block w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" %>
+    </div>
+
+    <h2 class="text-2xl font-semibold text-gray-800 mb-4">Restaurant Profile</h2>
+
+    <div class="mb-4">      
+      <div class="relative">
+        <%= form.file_field :res_profile, class: "absolute inset-0 opacity-0 w-full h-full" %>
+        <button type="button" class="mt-1 block w-full p-2 border border-gray-300 rounded-lg bg-red-500 text-white hover:bg-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-300">
+          Upload Restaurant Profile
+        </button>
+      </div>
+    </div>
+
+    <div class="flex justify-between">
+      <%= form.submit 'Add Restaurant', class: 'w-full py-2 px-4 bg-green-600 text-white rounded-lg hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500' %>
+    </div>
+  </div>
+<% end %>
+
+<%= link_to 'Back', restros_path, class: 'mt-4 block text-center text-blue-500 hover:text-blue-700' %>

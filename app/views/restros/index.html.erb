@@ -1,8 +1,26 @@
-<h1 class="text-3xl font-bold text-center my-6">Top Restaurants</h1>
+<h1 class="text-4xl font-extrabold text-center my-6">Top Restaurants</h1>
 
-<% @restros.each do |restro| %>
-  <div class="bg-white shadow-lg rounded-lg p-4 my-4 mx-auto max-w-lg">
-    <p class="text-xl font-semibold text-gray-800"><%= restro.name %></p>
-    <%= link_to 'View Menus', products_path, class: 'mt-2 inline-block text-blue-500 hover:text-blue-700 font-medium' %>
+<div class="px-4 pt-12 bg-gray-100">
+  <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
+    <% @restros.each do |restro| %>
+      <%= link_to restro do %>
+      <div class="bg-white shadow-lg rounded-lg p-4 transition-all duration-300 transform hover:scale-105 hover:shadow-2xl">
+        <% if restro.res_profile.attached? %>  <!-- Check if the restaurant has a profile image attached -->
+          <div class="mb-4">
+            <%= image_tag restro.res_profile, class: 'w-full h-40 object-cover rounded-lg' %>
+          </div>
+        <% else %>
+          <div class="mb-4">
+            <%= image_tag 'default_restro.jpg', class: 'w-full h-40 object-cover rounded-lg' %>
+          </div>
+        <% end %>
+
+        <p class="text-xl font-semibold text-gray-800 mb-2"><%= restro.name %></p>
+        
+        <p class="text-md text-black-600 mb-2"><%= restro.address %></p>
+        
+      </div>
+      <% end %>
+    <% end %>
   </div>
-<% end %>
+</div>
