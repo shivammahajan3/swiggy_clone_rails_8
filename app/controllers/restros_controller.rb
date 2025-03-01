@@ -9,13 +9,17 @@ class RestrosController < ApplicationController
     @products = @restro.products
   end
 
+  def restro_owner
+    @restros = current_user.restros
+  end
+
   def new
     @restro = Restro.new
   end
 
   def create
     @restro = Restro.new(restro_params)
-    @restro.user = User.first
+    @restro.user = current_user
     if @restro.save
       flash[:notice] = "Resturent added Successfully"
       redirect_to restros_path

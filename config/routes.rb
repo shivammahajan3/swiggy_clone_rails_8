@@ -20,7 +20,9 @@ Rails.application.routes.draw do
 
   resources :payments, only: [:new, :create]
   get 'thanks', to: 'payments#thanks', as: 'thanks'
-  resources :orders, only: [:index]
+  # resources :orders, only: [:index]
   get 'my_orders', to: "orders#current_user_orders"
+
+  get 'restro_owner', to: "restros#restro_owner"
 
 end

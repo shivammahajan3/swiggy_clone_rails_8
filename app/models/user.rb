@@ -5,5 +5,5 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
   has_many :restros
   has_many :orders
-  enum :role, [ :user, :restro_user, :delivery_partner, :admin ]
+  enum :role, [ :customer, :restro_user, :delivery_partner, :admin ]
 end

@@ -24,7 +24,11 @@
   </head>
 
   <body>
-    <%= render 'layouts/navigation' %><br>
+    <% if !user_signed_in? || current_user.customer? %>
+      <%= render 'layouts/navigation'%><br>
+    <% elsif user_signed_in? && current_user.restro_user? %>
+      <%= render 'layouts/restro_navigation'%><br>
+    <% end %>
     <%= render 'layouts/messages' %>
     <%= yield %>
   </body>
