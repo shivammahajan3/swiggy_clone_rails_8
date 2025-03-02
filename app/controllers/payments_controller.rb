@@ -2,7 +2,6 @@ class PaymentsController < ApplicationController
   before_action :amount_to_be_charged, :set_description
 
   def new
-    session[:total_amount] = params[:total_amount]
   end
 
   def create

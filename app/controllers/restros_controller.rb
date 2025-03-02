@@ -1,11 +1,9 @@
 class RestrosController < ApplicationController
   
-  before_action :same_restro_owner, only: [:show]
-
   def index
     if !user_signed_in? || current_user.customer?
       @restros = Restro.all
-    elsif current_user.restro_user? && same_restro_owner
+    elsif current_user.restro_user? 
       redirect_to restro_owner_path
     end
   end
@@ -39,11 +37,6 @@ class RestrosController < ApplicationController
 
   def restro_params
     params.expect(restro: [ :name, :address, :phone_number, :res_profile])
-  end
-
-  def same_restro_owner
-    restro = Restro.find(params[:id])
-    return true if current_user == restro.user
   end
 
 end
