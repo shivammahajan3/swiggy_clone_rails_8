@@ -1,5 +1,21 @@
 class ProductsController < ApplicationController
 
+  def new
+    @restro = Restro.find(params[:restro_id])
+    @product = @restro.products.new 
+  end
+
+  def create
+    restro = Restro.find(params[:restro_id])
+    @product = restro.products.new(product_params)
+    if @product.save
+      flash[:notice] = "Product has been added to the #{restro.name}"
+    else
+      flash[:alert] = "Something went wrong!"
+    end
+    redirect_to restro
+  end
+
   def cart
     @cart_items = session[:cart] || []
     @products_in_cart = Product.where(id: @cart_items.map { |item| item['product_id'] })
@@ -26,4 +42,9 @@ class ProductsController < ApplicationController
     redirect_to restro_path(product.restro_id)
   end
 
+  private
+
+  def product_params
+    params.expect(product: [:name, :price, :prod_profile])
+  end
 end

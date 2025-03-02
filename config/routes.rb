@@ -13,7 +13,9 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   # root "posts#index"
-  resources :restros
+  resources :restros do
+    resources :products, only: [:new, :create, :destroy]
+  end
 
   post 'products/:id/add_to_cart', to: 'products#add_to_cart', as: 'add_to_cart'
   get 'cart', to: 'products#cart', as: 'cart'
