@@ -1,15 +1,17 @@
 class ProductsController < ApplicationController
 
+  before_action :set_restro_user, only: [ :new, :create ]
+  before_action :require_restro_user, only: [ :new, :create ]
+  before_action :require_same_restro_user, only: [ :new, :create ]
+
   def new
-    @restro = Restro.find(params[:restro_id])
     @product = @restro.products.new 
   end
 
   def create
-    restro = Restro.find(params[:restro_id])
-    @product = restro.products.new(product_params)
+    @product = @restro.products.new(product_params)
     if @product.save
-      flash[:notice] = "Product has been added to the #{restro.name}"
+      flash[:notice] = "Product has been added to the #{@restro.name}"
     else
       flash[:alert] = "Something went wrong!"
     end
@@ -47,4 +49,23 @@ class ProductsController < ApplicationController
   def product_params
     params.expect(product: [:name, :price, :prod_profile])
   end
+
+  def set_restro_user
+    @restro = Restro.find(params[:restro_id])
+  end
+
+  def require_restro_user
+    unless current_user.restro_user?
+      flash[:alert] = "You can't access this!"
+      redirect_to restros_path
+    end
+  end
+
+  def require_same_restro_user
+    unless current_user == @restro.user
+      flash[:alert] = "You can't add menus to other's restaurents!"
+      redirect_to restros_path
+    end
+  end
+
 end
