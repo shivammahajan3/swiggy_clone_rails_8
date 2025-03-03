@@ -18,6 +18,7 @@ Rails.application.routes.draw do
   end
 
   post 'products/:id/add_to_cart', to: 'products#add_to_cart', as: 'add_to_cart'
+  delete 'products/:id/remove_from_cart', to: 'products#remove_from_cart', as: 'remove_from_cart'
   get 'cart', to: 'products#cart', as: 'cart'
 
   resources :payments, only: [:new, :create]

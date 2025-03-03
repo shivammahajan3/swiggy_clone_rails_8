@@ -33,6 +33,16 @@ class ProductsController < ApplicationController
     product = Product.find(params[:id])
     session[:cart] ||= []
     
+    product_restro_id = product.restro_id
+
+    cart_restros = session[:cart].map{ |item| Product.find(item['product_id']).restro_id }
+
+    if cart_restros.uniq.length > 1 || (cart_restros.any? && cart_restros.first != product_restro_id)
+      flash[:alert] = "You can only order from one restaurant at a time."
+      redirect_to cart_path
+      return
+    end
+
     cart_item = session[:cart].find { |item| item['product_id'].to_i == product.id.to_i }
 
     if cart_item
@@ -42,6 +52,14 @@ class ProductsController < ApplicationController
     end
     flash[:notice] = "#{product.name} has been added to your cart."
     redirect_to restro_path(product.restro_id)
+  end
+
+  def remove_from_cart
+    # debugger
+    product_id = params[:id]
+    session[:cart].delete(session[:cart].find{ |item| item['product_id'] == product_id.to_i })
+    flash[:notice] = "Item Remove From Cart"
+    redirect_to cart_path
   end
 
   private
