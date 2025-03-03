@@ -1,3 +1,3 @@
 # README
 
-![ER Diagram](/app/assets/images/siwggy_er.jpeg)
+![ER Diagram](/app/assets/images/swiggy_er.jpeg)
