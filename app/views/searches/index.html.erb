@@ -1,0 +1,21 @@
+<div class="flex justify-center items-center">
+  <%= form_with url: search_path, method: :get, local: true do |f| %>
+    <div class="field">
+      <%= f.label :search_for, class: "block text-sm font-medium text-gray-700" %>
+      <%= f.select :type, options_for_select([['Restaurants', 'restaurants'], ['Dishes', 'dishes']], 'restaurents'), class: "mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-orange-500 appearance-none text-gray-900" %>
+    </div><br>
+
+    <div class="flex justify-center items-center mb-4 space-x-4">
+      <%= f.text_field :search, placeholder: "Search", class: "w-96 p-3 border border-orange-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:outline-none" %>
+      <%= f.submit "Search", class: "bg-red-600 text-white py-2 px-6 rounded-lg hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500" %>
+    </div>
+  <% end %>
+</div>
+
+<% if @restros.any? %>
+  <%= render 'searches/restros' %>
+<% elsif @products.any? %>
+  <%= render 'searches/products' %>
+<% else %>
+  <h5 class="text-3xl font-extrabold text-center my-6">No Result Found!</h5>
+<% end %>

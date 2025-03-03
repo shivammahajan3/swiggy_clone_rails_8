@@ -1,0 +1,24 @@
+<div class="px-4 pt-12 bg-gray-100">
+  <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
+    <% @restros.each do |restro| %>
+      <%= link_to restro do %>
+      <div class="bg-white shadow-lg rounded-lg p-4 transition-all duration-300 transform hover:scale-105 hover:shadow-2xl">
+        <% if restro.res_profile.attached? %>
+          <div class="mb-4">
+            <%= image_tag restro.res_profile, class: 'w-full h-40 object-cover rounded-lg' %>
+          </div>
+        <% else %>
+          <div class="mb-4">
+            <%= image_tag 'default_restro.jpg', class: 'w-full h-40 object-cover rounded-lg' %>
+          </div>
+        <% end %>
+
+        <p class="text-xl font-semibold text-gray-800 mb-2"><%= restro.name %></p>
+        
+        <p class="text-md text-black-600 mb-2"><%= restro.address %></p>
+        
+      </div>
+      <% end %>
+    <% end %>
+  </div>
+</div>
