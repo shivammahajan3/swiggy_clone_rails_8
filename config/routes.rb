@@ -22,10 +22,20 @@ Rails.application.routes.draw do
 
   resources :payments, only: [:new, :create]
   get 'thanks', to: 'payments#thanks', as: 'thanks'
-  # resources :orders, only: [:index]
   get 'my_orders', to: "orders#current_user_orders"
 
   get 'restro_owner', to: "restros#restro_owner"
 
-  resources :users, only: [ :show ]
+  resources :users, only: [ :show ] do
+    get 'edit_name'
+    patch 'update_name'
+    
+    get 'edit_address'
+    patch 'update_address'
+    
+    get 'edit_phone_number'
+    patch 'update_phone_number'
+
+  end
+
 end

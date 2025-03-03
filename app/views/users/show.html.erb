@@ -16,21 +16,21 @@
           <div>
             <strong class="text-md text-gray-800">Name</strong>
           </div>
-          <span class="font-semibold text-gray-800">Edit</span>
+          <span class="font-semibold text-gray-800"><%= link_to 'Edit', user_edit_name_path(current_user) %></span>
         </li>
 
         <li class="flex justify-between items-center bg-gray-200 p-3 shadow-sm">
           <div>
             <strong class="text-md text-gray-800">Address</strong>
           </div>
-          <span class="font-semibold text-gray-800">Edit</span>
+          <span class="font-semibold text-gray-800"><%= link_to 'Edit', user_edit_address_path(current_user) %></span>
         </li>
 
         <li class="flex justify-between items-center bg-gray-200 p-3 shadow-sm">
           <div>
             <strong class="text-md text-gray-800">Phone Number</strong>
           </div>
-          <span class="font-semibold text-gray-800">Edit</span>
+          <span class="font-semibold text-gray-800"><%= link_to 'Edit', user_edit_phone_number_path(current_user) %></span>
         </li>
       </ul>
     </div>
