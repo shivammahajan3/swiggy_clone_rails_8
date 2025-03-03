@@ -12,7 +12,7 @@ class RestrosController < ApplicationController
 
   def show
     @restro = Restro.find(params[:id])
-    if current_user.customer?
+    if !user_signed_in? || current_user.customer?
       @products = @restro.products
     elsif current_user == @restro.user
       @products = @restro.products

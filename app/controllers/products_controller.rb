@@ -15,7 +15,7 @@ class ProductsController < ApplicationController
     else
       flash[:alert] = "Something went wrong!"
     end
-    redirect_to restro
+    redirect_to @restro
   end
 
   def cart
