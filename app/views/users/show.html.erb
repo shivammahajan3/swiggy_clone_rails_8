@@ -1,0 +1,38 @@
+<h1 class="text-4xl font-extrabold text-center my-6">Your Profile</h1>
+
+<div class="space-y-6">
+    <div class="bg-gray-100 shadow-md p-4 max-w-md mx-auto">
+      <div class="flex justify-between items-center border-b pb-4 mb-4">
+        <div>
+          <h2 class="text-xl font-semibold text-gray-800">Name : <%=current_user.name %></h2>
+          <p class="text-sm font-semibold text-gray-600">Address : <%= current_user.address %></p>
+          <p class="text-sm font-semibold text-gray-600">Phone Number : <%= current_user.phone_number %></p>
+        </div>
+      </div>
+
+      <h3 class="text-lg font-semibold text-gray-700 mb-3">Setting</h3>
+      <ul class="space-y-3">
+        <li class="flex justify-between items-center bg-gray-200 p-3 shadow-sm">
+          <div>
+            <strong class="text-md text-gray-800">Name</strong>
+          </div>
+          <span class="font-semibold text-gray-800">Edit</span>
+        </li>
+
+        <li class="flex justify-between items-center bg-gray-200 p-3 shadow-sm">
+          <div>
+            <strong class="text-md text-gray-800">Address</strong>
+          </div>
+          <span class="font-semibold text-gray-800">Edit</span>
+        </li>
+
+        <li class="flex justify-between items-center bg-gray-200 p-3 shadow-sm">
+          <div>
+            <strong class="text-md text-gray-800">Phone Number</strong>
+          </div>
+          <span class="font-semibold text-gray-800">Edit</span>
+        </li>
+      </ul>
+    </div>
+</div>
+

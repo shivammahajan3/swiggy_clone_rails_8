@@ -1,6 +1,11 @@
 <nav class="bg-white shadow-lg">
-  <div class="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
+   <div class="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
     <div class="relative flex h-16 items-center justify-between">
+      
+      <div class="flex items-center">
+        <%= image_tag 'swiggy_logo.png', class: 'w-25 h-12 object-cover bg-transparent' %>
+      </div>
+
       <div class="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
         <div class="hidden sm:ml-6 sm:block">
           <div class="flex space-x-4">
@@ -24,7 +29,7 @@
             <% else %>
               <%= image_tag "default_user_icon.png", class: "rounded-full w-12 h-12 object-cover" %>
             <% end %>
-            <%= link_to current_user.name, '#', class: "rounded-md px-3 py-2 text-sm font-medium text-black hover:bg-gray-200 hover:text-black" %>
+            <%= link_to current_user.name, current_user, class: "rounded-md px-3 py-2 text-sm font-medium text-black hover:bg-gray-200 hover:text-black" %>
           <% end %>
         </div>
     </div>

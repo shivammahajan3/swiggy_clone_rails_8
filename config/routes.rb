@@ -27,4 +27,5 @@ Rails.application.routes.draw do
 
   get 'restro_owner', to: "restros#restro_owner"
 
+  resources :users, only: [ :show ]
 end
