@@ -42,4 +42,12 @@ Rails.application.routes.draw do
   end
 
   get 'search', to: 'searches#index'
+
+  get 'deliveries', to: 'delivery_partners#index'
+  get 'delivery_partners/current_deliveries', to: 'delivery_partners#current_deliveries'
+  get 'delivery_partners/completed_deliveries', to: 'delivery_partners#completed_deliveries'
+
+  post 'delivery_partners/accept_order', to: 'delivery_partners#accept_order', as: 'accept_order'
+  post 'delivery_partners/complete_order', to: 'delivery_partners#complete_order', as: 'complete_order'
+
 end

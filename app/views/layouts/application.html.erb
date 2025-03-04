@@ -24,12 +24,17 @@
   </head>
 
   <body>
+
     <% if !user_signed_in? || current_user.customer? %>
       <%= render 'layouts/navigation'%><br>
     <% elsif user_signed_in? && current_user.restro_user? %>
       <%= render 'layouts/restro_navigation'%><br>
+    <% elsif user_signed_in? && current_user.delivery_partner? %>
+      <%= render 'layouts/delivery_partner'%><br>
     <% end %>
+
     <%= render 'layouts/messages' %>
+    
     <%= yield %>
   </body>
 </html>

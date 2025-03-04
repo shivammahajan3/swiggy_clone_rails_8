@@ -5,7 +5,7 @@
     <% @restros.each do |restro| %>
       <%= link_to restro do %>
       <div class="bg-white shadow-lg rounded-lg p-4 transition-all duration-300 transform hover:scale-105 hover:shadow-2xl">
-        <% if restro.res_profile.attached? %>  <!-- Check if the restaurant has a profile image attached -->
+        <% if restro.res_profile.attached? %>
           <div class="mb-4">
             <%= image_tag restro.res_profile, class: 'w-full h-40 object-cover rounded-lg' %>
           </div>

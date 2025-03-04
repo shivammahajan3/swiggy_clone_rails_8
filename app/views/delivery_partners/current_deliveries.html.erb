@@ -1,0 +1,21 @@
+<h1 class="text-4xl font-bold text-center mb-8 text-indigo-600">Current Deliveries</h1>
+
+<div class="max-w-6xl mx-auto px-4">
+  <% @orders.each do |order| %>
+    <div class="bg-white p-6 rounded-lg shadow-lg mb-6 flex items-start justify-between space-x-4">
+      <div class="flex flex-col space-y-3 w-2/3">
+        <p class="text-lg font-semibold text-gray-800">Restaurant: <span class="font-normal text-gray-600"><%= order.restro.name %></span></p>
+        <p class="text-lg font-semibold text-gray-800">Address: <span class="font-normal text-gray-600"><%= order.restro.address %></span></p>
+        <p class="text-sm text-gray-600">Status: <span class="font-medium text-indigo-600"><%= order.status.capitalize %></span></p>
+        <p class="text-lg font-semibold text-gray-800">Delivered To: <span class="font-normal text-gray-600"><%= order.user.name %></span></p>
+        <p class="text-lg font-semibold text-gray-800">Address: <span class="font-normal text-gray-600"><%= order.user.address %></span></p>
+        <p class="text-lg font-semibold text-gray-800">Phone: <span class="font-normal text-gray-600"><%= order.user.phone_number %></span></p>
+      </div>
+
+      <div class="flex flex-col justify-between items-center space-y-3">
+        <%= button_to 'Mark as Delivered', complete_order_path(id: order.id), method: :post, class: 'bg-green-500 text-white py-2 px-4 rounded-lg hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-opacity-50' %>
+        <p class="text-sm text-gray-500">Order ID: <%= order.id %></p>
+      </div>
+    </div>
+  <% end %>
+</div>
