@@ -24,8 +24,10 @@ Rails.application.routes.draw do
   resources :payments, only: [:new, :create]
   get 'thanks', to: 'payments#thanks', as: 'thanks'
   get 'my_orders', to: "orders#current_user_orders"
-
+  post 'update_order_status', to: "orders#update_status"
+  
   get 'restro_owner', to: "restros#restro_owner"
+  get 'restros/:id/recent_orders', to: "restros#orders",as: 'recent_orders'
 
   resources :users, only: [ :show ] do
     get 'edit_name'

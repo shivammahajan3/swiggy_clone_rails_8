@@ -26,6 +26,11 @@ class RestrosController < ApplicationController
     @restros = current_user.restros
   end
 
+  def orders
+    @restro = Restro.find(params[:id])
+    @orders = @restro.orders.order(created_at: :desc)
+  end
+
   def new
     @restro = Restro.new
   end

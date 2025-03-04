@@ -2,7 +2,11 @@
 
 <% if current_user&.restro_user? %>
   <h3 class="text-xl font-extrabold text-center my-6"><%= pluralize(@restro.orders.count,'order') %> From This Restaurant</h3>
-  <%= link_to 'Add Product', new_restro_product_path(restro_id: @restro.id), class: 'w-full py-1 px-3 bg-orange-600 text-white rounded-lg hover:bg-orange-700 transition-colors mt-2 text-sm' %>
+  
+  <div class="flex justify-between items-center my-4">
+    <%= link_to 'Add Product', new_restro_product_path(restro_id: @restro.id), class: 'py-1 px-3 bg-orange-600 text-white rounded-lg hover:bg-orange-700 transition-colors' %>
+    <%= link_to 'Recent Orders', recent_orders_path, class: "py-1 px-3 rounded-md text-sm font-medium bg-orange-600 text-white hover:bg-orange-700 hover:text-white transition-colors" if current_user&.restro_user? %>
+  </div>
 <% end %>
 
 <div class="px-8 py-12 bg-gray-100">

@@ -1,0 +1,54 @@
+<h1 class="text-3xl font-bold text-center text-gray-800 mb-8">Orders</h1>
+
+<% if @orders.any? %>
+  <div class="space-y-6">
+    <% @orders.each do |order| %>
+      <div class="bg-gray-100 shadow-md p-4 max-w-md mx-auto">
+      <h3 class="text-3xl font-bold text-center text-orange-800 mb-8">In <%= order.restro.name %></h3>
+        
+        <div class="max-w-sm mx-auto bg-gray-50 p-4 rounded-lg shadow-md">
+          <h3 class="text-lg font-semibold text-gray-700 mb-3">Customer Information:</h3>
+          <p><strong>Name:</strong> <%= order.user.name %></p>
+          <p><strong>Phone:</strong> <%= order.user.phone_number %></p>
+          <p><strong>Address:</strong> <%= order.user.address %></p>
+        </div><br>
+
+        <div class="flex justify-between items-center border-b pb-4 mb-4">
+          <div>
+            <h2 class="text-xl font-semibold text-gray-800">Order #<%= order.id %></h2>
+            <p class="text-sm text-gray-600">Placed on: <%= order.created_at.strftime("%B %d, %Y") %></p>
+            <p class="text-sm text-gray-600">Time : <%= order.order_time.strftime('%I:%M:%S %p') %></p>
+          </div>
+          <div>
+            <p class="text-md font-semibold text-green-600">Status: <%= order.status.capitalize %></p>
+            <p class="pl-4"><%= button_to 'Update Status', update_order_status_path(id: order.id, restro_id: order.restro.id), class: "text-sm font-bold text-center text-orange-800" if (order.status != 'completed' && order.status != 'delivered') %></p>
+          </div>
+        </div>
+
+        <div class="mb-4">
+          <p class="text-lg font-semibold text-gray-800">
+            Total: <%= number_to_currency(order.total_price, unit: "₹", separator: ".", delimiter: ",", format: "%u %n") %>
+          </p>
+        </div>
+
+        <h3 class="text-lg font-semibold text-gray-700 mb-3">Products in this Order:</h3>
+        <ul class="space-y-3">
+          <% order.products.each do |product| %>
+            <li class="flex justify-between items-center bg-gray-200 p-3 shadow-sm">
+              <div>
+                <strong class="text-md text-gray-800"><%= product.name %></strong><br>
+                <span class="text-sm text-gray-600">
+                  Price: <%= number_to_currency(product.price, unit: "₹", separator: ".", delimiter: ",", format: "%u %n") %>
+                </span>
+              </div>
+              <span class="font-semibold text-gray-800">Quantity: <%= order.order_products.find_by(product_id: product.id).quantity %></span>
+            </li>
+          <% end %>
+        </ul>
+      </div>
+      <hr class="my-4">
+    <% end %>
+  </div>
+<% else %>
+  <p class="text-xl text-gray-600 text-center">No orders yet in this restro!</p>
+<% end %>
