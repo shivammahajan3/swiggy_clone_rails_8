@@ -35,7 +35,7 @@ class DeliveryPartnersController < ApplicationController
 
       # Notify the user and restaurant that the order has been delivered
       flash[:notice] = "Order completed successfully."
-      redirect_to delivery_partners_completed_deliveries_path
+      redirect_to delivery_partners_current_deliveries_path
     else
       flash[:alert] = "This order cannot be marked as completed."
       redirect_to delivery_partners_current_deliveries_path
