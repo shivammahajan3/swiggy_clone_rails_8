@@ -1,4 +1,6 @@
 class Order < ApplicationRecord
+  include Versioning
+
   belongs_to :user
   belongs_to :restro
   belongs_to :delivery_partner, class_name: 'User', optional: true
